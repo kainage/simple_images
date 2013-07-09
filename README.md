@@ -44,7 +44,7 @@ $ rake db:migrate
 This will be generated and placed in your app/models folder:
 
 ```ruby
-class Message
+class SimpleImage
   include SimpleImages::ImageAdditions
 end
 ```
@@ -61,6 +61,14 @@ class Article
 end
 ```
 
+Add the routes for the resource as well:
+
+```ruby
+  resources :articles
+    resources :simple_images, shallow: true, only: [:create, :update, :destroy]
+  end
+```
+
 The class is not restricted to Article, it can be any class you add ```has_simple_images``` to.
 
 ### Configuration
@@ -70,7 +78,10 @@ In the created initializer:
 file you will find some configuration options availible.
 Edit this file and restart you server to have the changes take effect.
 
-### CanCan Integration
+### User and CanCan Integration
+
+If you have a ```current_user``` it will assign the created image to that user.
+Otherwise it will be nil.
 
 If you are using cancan it will pick that up for the 3 controller methods and
 check authorization respectively

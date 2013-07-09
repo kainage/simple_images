@@ -1,6 +1,0 @@
-<%= form_for [attachable, Image.new], :html => { :multipart => true } do |f| %>
-  <%= content_tag :div, 'Add Image', :class => 'file filebutton' %>
-  <div style='display: none'>
-    <%= f.file_field :picture, :class => 'fileinput' %>
-  </div>
-<% end %>

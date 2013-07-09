@@ -1,0 +1,6 @@
+<%= form_for image, :html => { :multipart => true } do |f| %>
+  <%= content_tag :div, "Update", :class => 'simple_image_btn' %>
+  <div style='display: none'>
+    <%= f.file_field :picture, :class => 'simple_image_input' %>
+  </div>
+<% end %>

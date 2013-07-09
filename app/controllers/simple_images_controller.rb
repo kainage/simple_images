@@ -14,7 +14,7 @@ class SimpleImagesController < ApplicationController
         format.html { redirect_to @imageable, notice: 'Simple Image was successfully created.' }
         format.json { render json: @simple_image, status: :created, location: @simple_image }
       else
-        format.html { redirect_to @imageable, error: @simple_image.errors.full_messages.join(', ') }
+        format.html { redirect_to @imageable, alert: @simple_image.errors.full_messages.join(', ') }
         format.json { render json: @simple_image.errors, status: :unprocessable_entity }
       end
     end
@@ -25,11 +25,11 @@ class SimpleImagesController < ApplicationController
     authorize! :update, @simple_image if defined?(CanCan::Ability)
 
     respond_to do |format|
-      if @simple_image.update_attributes(simple_image_params)
-        format.html { redirect_to @imageable, notice: 'Simple Image was successfully updated.' }
+      if @simple_image.update(simple_image_params)
+        format.html { redirect_to request.referrer, notice: 'Simple Image was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to @imageable, error: @simple_image.errors.full_messages.join(', ') }
+        format.html { redirect_to request.referrer, alert: @simple_image.errors.full_messages.join(', ') }
         format.json { render json: @simple_image.errors, status: :unprocessable_entity }
       end
     end
@@ -43,7 +43,7 @@ class SimpleImagesController < ApplicationController
     @simple_image.destroy
 
     respond_to do |format|
-      format.html { redirect_to @imageable, notice: 'Simple Image was permanently removed.' }
+      format.html { redirect_to request.referrer, notice: 'Simple Image was permanently removed.' }
       format.json { head :no_content }
     end
   end
