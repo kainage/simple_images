@@ -1,0 +1,20 @@
+<div class='img img_up'>
+  <%= link_to icon_x(16, true, false), image,
+    :class => 'delete',
+    :data => {
+      method: :delete,
+      confirm: t('image.delete_confirm')
+     } if can? :destroy, image %>
+
+  <%= form_for image, :html => { :multipart => true } do |f| %>
+    <%= content_tag :div, icon_edit(16, true, false), :class => 'filedit filebutton' %>
+    <div style='display: none'>
+      <%= f.file_field :picture, :class => 'fileinput' %>
+    </div>
+  <% end if can? :update, image %>
+
+  <%= link_to image.picture.url, :class => 'fancybox-thumb',
+    :rel => "fancybox-thumb-#{image.attachable.class.to_s.downcase}-#{image.attachable.id}" do %>
+    <%= image_tag image.picture.thumb('65x65#').url %>
+  <% end %>
+</div>

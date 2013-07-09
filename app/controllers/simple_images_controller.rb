@@ -1,0 +1,61 @@
+class SimpleImagesController < ApplicationController
+  before_filter :find_imageable, except: :index
+
+  def create
+    current_user ||= nil # In the case of no current_user
+
+    @simple_image = @imageable.simple_images.build(simple_image_params)
+    @simple_image.user_id = current_user.try(:id)
+
+    authorize! :create, @simple_image if defined?(CanCan::Ability)
+
+    respond_to do |format|
+      if @simple_image.save
+        format.html { redirect_to @imageable, notice: 'Simple Image was successfully created.' }
+        format.json { render json: @simple_image, status: :created, location: @simple_image }
+      else
+        format.html { redirect_to @imageable, error: @simple_image.errors.full_messages.join(', ') }
+        format.json { render json: @simple_image.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    @simple_image = SimpleImage.find(params[:id])
+    authorize! :update, @simple_image if defined?(CanCan::Ability)
+
+    respond_to do |format|
+      if @simple_image.update_attributes(simple_image_params)
+        format.html { redirect_to @imageable, notice: 'Simple Image was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @imageable, error: @simple_image.errors.full_messages.join(', ') }
+        format.json { render json: @simple_image.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @simple_image = SimpleImage.find(params[:id])
+    authorize! :destroy, @simple_image if defined?(CanCan::Ability)
+
+    @imageable = @simple_image.imageable
+    @simple_image.destroy
+
+    respond_to do |format|
+      format.html { redirect_to @imageable, notice: 'Simple Image was permanently removed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def simple_image_params
+    params.require(:simple_image).permit(:image)
+  end
+
+  def find_imageable
+    resource, id = request.path.split('/')[1, 2]
+    @imageable = resource.singularize.classify.constantize.find(id)
+  end
+end

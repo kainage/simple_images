@@ -1,0 +1,52 @@
+.img {
+  float: right;
+  height: 45px;
+  width: 45px;
+  margin: 5px 5px 0 0;
+  padding: 10px;
+  background: silver;
+  position: relative;
+  .filedit {
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #EEE;
+    padding: 2px 0 0 0;
+    width: 22px;
+    text-align: center;
+    border: 1px solid silver;
+  }
+  .delete {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: #EEE;
+    padding: 2px 0 0 0;
+    width: 22px;
+    text-align: center;
+    border: 1px solid silver;
+  }
+  .file {
+    border: 1px dashed white;
+    height: 23px;
+    width: 43px;
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+    font-size: 0.7em;
+    cursor: pointer;
+    &:hover {
+      background: grey;
+    }
+  }
+}
+.img_up {
+  padding: 0;
+  height: 65px;
+  width: 65px;
+  box-shadow: 0 0 7px rgba(0,0,0,0.1);
+  &:hover {
+    box-shadow: 0 0 9px rgba(0,0,0,0.3);
+  }
+}

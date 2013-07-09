@@ -11,6 +11,7 @@ class SimpleImagesGenerator < Rails::Generators::Base
 
   def create_simple_images_files
     copy_file "simple_image.rb", "app/models/simple_images.rb"
+    copy_file "initializer.rb", "config/initializers/simple_images.rb"
     migration_template "create_simple_images.rb", "db/migrate/create_simple_images.rb"
   end
 end

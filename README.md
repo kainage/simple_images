@@ -1,15 +1,16 @@
-# Simple Messenger
+# Simple Images
 
-Add simple messaging functionality to active record models.
+Add simple one-click image uploading to active record models.
 
 **Requires ruby >= 2.0.0**
+**Requires rails >= 4.0.0**
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'simple_messenger'
+gem 'simple_images'
 ```
 
 And then execute:
@@ -21,13 +22,13 @@ $ bundle
 Or install it yourself as:
 
 ```
-$ gem install simple_messenger
+$ gem install simple_images
 ```
 
-Run the generator to create the migration file and message model:
+Run the generator to create the migration, initializer and simple_image model files:
 
 ```
-$ rails g messages
+$ rails g simple_images
 ```
 
 Migrate the database:
@@ -38,137 +39,72 @@ $ rake db:migrate
 
 ## Usage
 
-### Message Model
+### Image Model
 
 This will be generated and placed in your app/models folder:
 
 ```ruby
 class Message
-  include SimpleMessenger::MessageAdditions
+  include SimpleImages::ImageAdditions
 end
 ```
 
 You can add any custom functionality to the Message model here.
 
-### Messenger Model
+### Imageable Model
 
 Add the appropriate line to the top of your activerecord model:
 
 ```ruby
-class User
-  simple_messenger
+class Article
+  has_simple_images
 end
 ```
 
-The class is not restricted to User, it can be any class you add ```simple_messenger``` to.
+The class is not restricted to Article, it can be any class you add ```has_simple_images``` to.
 
-### Creating Messages
+### Configuration
 
-Send messages by passing in a sender, receiver and some content:
+In the created initializer:
+```config/initializers/simple_images.rb```
+file you will find some configuration options availible.
+Edit this file and restart you server to have the changes take effect.
 
-```ruby
-bob = User.create
-alice = User.create
-bob.create_message!(receiver: alice, content: 'Hello')
-# => <Message id: 1 sender_id: 1 sender_type 'User' ... content: "Hello" viewed: false>
+### CanCan Integration
 
-bob.messages.count
-# => 1
-
-bob.sent_messages.count
-# => 1
-
-bob.received_messages.count
-# => 0
-
-bob.new_messages.count
-# => 0
-
-bob.messages_with(alice)
-# => <Message id: 1 ... >
-
-alice.messages.count
-# => 1
-
-alice.sent_messages.count
-# => 0
-
-alice.received_messages.count
-# => 1
-
-alice.new_messages.count
-# => 1
-
-alice.messages_with(bob)
-# => <Message id: 1 ... >
-```
-
-### Messenger Helpers
-
-The following constructors are available:
+If you are using cancan it will pick that up for the 3 controller methods and
+check authorization respectively
 
 ```ruby
-bob.build_message
-bob.new_message
-bob.create_message
-bob.create_message!
+authorize! :create, @simple_image
+authorize! :update, @simple_image
+authorize! :destroy, @simple_image
 ```
 
-Due to the nature of the design you would have to type:
+### Creating Images
 
-```ruby
-bob.sent_messages.build ...
+The point of this gem is to have dead simple image uploading anywhere in your app.
+
+An image must be associated to an active record model. If you want all images to be
+availible to all things just pick an arbitrary object that you are not going to
+destroy (such as first user) and associate all images with that record.
+
+Include the javascript file in your application.js manifest:
+
+```
+//= require simple_images
 ```
 
-As typing the ```bob.messages``` returns a specialized relation and is not
-created through a ```has_many``` relationship:
+Include the stylesheet in your application.css manifest:
 
-### Message Helpers
-
-**Class Methods**
-
-To get all the member ids in a collection of messages use the following:
-
-```ruby
-Message.uniq_member_ids_for(messages)
+```
+/*
+ *= require simple_images
+*/
 ```
 
-You can optionally omit one or more member from the collection:
+### Helpers
 
-```ruby
-Message.uniq_member_ids_for(messages, remove: current_user)
-```
-This could be useful for rendering a list of users which the current_user has
-messaged.
-
-```remove``` can be an id, array of ids, ActiveRecord object, collection of
-ActiveRecord objects, or anything that ```respond_to?(:id)```
-
-**Instance Methods**
-
-Check to see if the message has been read:
-
-```ruby
-msg = Message.create(sender: bob, receiver: alice, content: 'Hello')
-# => <Message ... viewed: false>
-msg.read?(bob) # true as bob is the sender
-# => true
-msg.read?(alice)
-# => false
-```
-
-Find the opposite member in the message:
-
-```ruby
-msg = Message.create(sender: bob, receiver: alice, content: 'Hello')
-# => <Message ... >
-msg.member_who_is_not(bob)
-# => <User ... username: 'alice'>
-msg.member_who_is_not(alice)
-# => <User ... username: 'bob'>
-msg.member_who_is_not(jimmy)
-# => SimpleMessenger::NotInvolved error
-```
 
 ## Contributing
 
