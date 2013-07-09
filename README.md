@@ -2,7 +2,7 @@
 
 Add simple one-click image uploading to active record models.
 
-**Requires ruby >= 2.0.0**
+**Requires ruby >= 1.9.3**
 **Requires rails >= 4.0.0**
 
 ## Installation
@@ -114,7 +114,20 @@ Include the stylesheet in your application.css manifest:
 */
 ```
 
+You can omit the stylesheet if you want to style your own upload button from scratch
+
 ### Helpers
+
+In your views you can call the following methods:
+
+```
+<%= render_simple_images_edit_link_for(image) %>
+<%= render_simple_images_destroy_link_for(image) %>
+<%= render_simple_images_actions_for(image) %>
+<%= render_simple_images_form_for(imageable) %>
+```
+
+which should be pretty straight forward.
 
 
 ## Contributing
