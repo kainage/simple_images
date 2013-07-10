@@ -1,5 +1,7 @@
 # Simple Images
 
+[![Build Status](https://travis-ci.org/kainage/simple_images.png)](https://travis-ci.org/kainage/simple_images)
+
 Add simple one-click image uploading to active record models.
 
 **Requires ruby >= 1.9.3**
