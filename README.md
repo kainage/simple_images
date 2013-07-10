@@ -76,9 +76,11 @@ The class is not restricted to Article, it can be any class you add ```has_simpl
 
 In the created initializer:
 
-```config/initializers/simple_images.rb```
+```
+  config/initializers/simple_images.rb
+```
 
-file you will find some configuration options availible.
+You will find some configuration options availible.
 Edit this file and restart you server to have the changes take effect.
 
 ### User and CanCan Integration
