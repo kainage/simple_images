@@ -3,6 +3,7 @@
 Add simple one-click image uploading to active record models.
 
 **Requires ruby >= 1.9.3**
+
 **Requires rails >= 4.0.0**
 
 ## Installation
@@ -74,7 +75,9 @@ The class is not restricted to Article, it can be any class you add ```has_simpl
 ### Configuration
 
 In the created initializer:
+
 ```config/initializers/simple_images.rb```
+
 file you will find some configuration options availible.
 Edit this file and restart you server to have the changes take effect.
 
