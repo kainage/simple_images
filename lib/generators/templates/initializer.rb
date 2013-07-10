@@ -1,4 +1,4 @@
-ActsAsFeatureable.setup do |config|
+SimpleImages.setup do |config|
   # Set the maximum size allowed of uploaded images.
   # config.image_max_size = 5.megabytes
 

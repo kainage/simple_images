@@ -92,7 +92,7 @@ authorize! :update, @simple_image
 authorize! :destroy, @simple_image
 ```
 
-### Creating Images
+### Helpers
 
 The point of this gem is to have dead simple image uploading anywhere in your app.
 
@@ -116,8 +116,6 @@ Include the stylesheet in your application.css manifest:
 
 You can omit the stylesheet if you want to style your own upload button from scratch
 
-### Helpers
-
 In your views you can call the following methods:
 
 ```
@@ -129,6 +127,10 @@ In your views you can call the following methods:
 
 which should be pretty straight forward.
 
+### Creating Images
+
+Simply click on the 'Add Image' Button and select a file to upload.
+If your controller responds to ```current_user``` then it will be assigned to the image.
 
 ## Contributing
 

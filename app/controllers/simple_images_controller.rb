@@ -2,19 +2,17 @@ class SimpleImagesController < ApplicationController
   before_filter :find_imageable, except: :index
 
   def create
-    current_user ||= nil # In the case of no current_user
-
     @simple_image = @imageable.simple_images.build(simple_image_params)
-    @simple_image.user_id = current_user.try(:id)
+    @simple_image.user_id = current_user.id if respond_to?(:current_user)
 
     authorize! :create, @simple_image if defined?(CanCan::Ability)
 
     respond_to do |format|
       if @simple_image.save
-        format.html { redirect_to @imageable, notice: 'Simple Image was successfully created.' }
+        format.html { redirect_to request.referrer, notice: 'Image was successfully created.' }
         format.json { render json: @simple_image, status: :created, location: @simple_image }
       else
-        format.html { redirect_to @imageable, alert: @simple_image.errors.full_messages.join(', ') }
+        format.html { redirect_to request.referrer, alert: @simple_image.errors.full_messages.join(', ') }
         format.json { render json: @simple_image.errors, status: :unprocessable_entity }
       end
     end
@@ -26,7 +24,7 @@ class SimpleImagesController < ApplicationController
 
     respond_to do |format|
       if @simple_image.update(simple_image_params)
-        format.html { redirect_to request.referrer, notice: 'Simple Image was successfully updated.' }
+        format.html { redirect_to request.referrer, notice: 'Image was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { redirect_to request.referrer, alert: @simple_image.errors.full_messages.join(', ') }
@@ -43,7 +41,7 @@ class SimpleImagesController < ApplicationController
     @simple_image.destroy
 
     respond_to do |format|
-      format.html { redirect_to request.referrer, notice: 'Simple Image was permanently removed.' }
+      format.html { redirect_to request.referrer, notice: 'Image was permanently removed.' }
       format.json { head :no_content }
     end
   end

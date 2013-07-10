@@ -10,18 +10,21 @@ describe SimpleImagesController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new SimpleImage" do
+        controller.request.should_receive(:referrer).and_return(article_url(article))
         expect {
           post :create, {article_id: article, simple_image: valid_attributes}
         }.to change(SimpleImage, :count).by(1)
       end
 
       it "assigns a newly created simple_image as @simple_image" do
+        controller.request.should_receive(:referrer).and_return(article_url(article))
         post :create, {article_id: article, simple_image: valid_attributes}
         assigns(:simple_image).should be_a(SimpleImage)
         assigns(:simple_image).should be_persisted
       end
 
       it "redirects to the imageable" do
+        controller.request.should_receive(:referrer).and_return(article_url(article))
         post :create, {article_id: article, simple_image: valid_attributes}
         response.should redirect_to(article)
       end
@@ -30,6 +33,7 @@ describe SimpleImagesController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved simple_image as @simple_image" do
         # Trigger the behavior that occurs when invalid params are submitted
+        controller.request.should_receive(:referrer).and_return(article_url(article))
         SimpleImage.any_instance.stub(:save).and_return(false)
         post :create, {article_id: article, simple_image: { "image" => nil }}
         assigns(:simple_image).should be_a_new(SimpleImage)
@@ -37,6 +41,7 @@ describe SimpleImagesController do
 
       it "redirects to imageable" do
         # Trigger the behavior that occurs when invalid params are submitted
+        controller.request.should_receive(:referrer).and_return(article_url(article))
         SimpleImage.any_instance.stub(:save).and_return(false)
         post :create, {article_id: article, simple_image: { "image" => nil }}
         response.should redirect_to article
@@ -44,6 +49,7 @@ describe SimpleImagesController do
 
       it "error message exists" do
         # Trigger the behavior that occurs when invalid params are submitted
+        controller.request.should_receive(:referrer).and_return(article_url(article))
         SimpleImage.any_instance.stub(:save).and_return(false)
         post :create, {article_id: article, simple_image: { "image" => nil }}
         expect(flash[:alert]).to_not be_nil

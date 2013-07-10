@@ -27045,3 +27045,1078 @@ Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
   [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
   Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.4ms)
   [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "simple_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "imageable_id" integer NOT NULL, "imageable_type" varchar(255) NOT NULL, "user_id" integer, "image_uid" varchar(255) NOT NULL, "image_name" varchar(255) NOT NULL, "active" boolean DEFAULT 't' NOT NULL, "visible" boolean DEFAULT 't' NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_simple_images_on_imageable_id_and_imageable_type" ON "simple_images" ("imageable_id", "imageable_type")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "content" text) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('0')[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "simple_images"[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000050f1b80 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-14587-1gg5mca>>}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 01:17:10 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_10_987_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:10 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 66ms (ActiveRecord: 1.1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "simple_images"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x00000003047790 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-14587-w14zf6>>}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 01:17:10 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_10_999_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:10 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000031b8958 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-14587-1wsk1f>>}, "article_id"=>"1"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_8_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_36_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>"test2"}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_46_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000054470a0 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-14587-1qhbdo5>>}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "simple_images" SET "image_uid" = ?, "updated_at" = ? WHERE "simple_images"."id" = 1[0m  [["image_uid", "2013/07/09/18_17_11_51_test.png"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_59_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000056cf4d0 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-14587-ztevc9>>}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "simple_images" SET "image_uid" = ?, "updated_at" = ? WHERE "simple_images"."id" = 1  [["image_uid", "2013/07/09/18_17_11_64_test.png"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_72_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_80_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_89_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_99_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "simple_images"
+Processing by SimpleImagesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? ORDER BY "articles"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "simple_images" WHERE "simple_images"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "simple_images"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_112_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mArticle Load (0.0ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? ORDER BY "articles"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "simple_images" WHERE "simple_images"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_123_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_127_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_142_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (3.7ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_158_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_form.html.erb (2.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_203_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (0.9ms)
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.7ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_213_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (1.0ms)
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/18_17_11_221_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 01:17:11 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.5ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "simple_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "imageable_id" integer NOT NULL, "imageable_type" varchar(255) NOT NULL, "user_id" integer, "image_uid" varchar(255) NOT NULL, "image_name" varchar(255) NOT NULL, "active" boolean DEFAULT 't' NOT NULL, "visible" boolean DEFAULT 't' NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_simple_images_on_imageable_id_and_imageable_type" ON "simple_images" ("imageable_id", "imageable_type")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "content" text) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('0')[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_792_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_799_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_814_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_form.html.erb (4.7ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_864_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.8ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_873_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (1.3ms)
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_883_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (0.8ms)
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_890_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (0.9ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "simple_images"[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x0000000439c390 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17319-1yzpazd>>}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_910_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to 
+Completed 500 Internal Server Error in 11ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000047209f8 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17319-pgmdjs>>}, "article_id"=>"1"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_918_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to 
+Completed 500 Internal Server Error in 4ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000047a2548 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17319-4xwbk6>>}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_926_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to 
+Completed 500 Internal Server Error in 4ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to 
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to 
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to 
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_951_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>"test2"}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_960_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000048c6be0 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17319-14dhtle>>}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "simple_images" SET "image_uid" = ?, "updated_at" = ? WHERE "simple_images"."id" = 1  [["image_uid", "2013/07/09/19_05_08_966_test.png"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_974_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x00000004887df0 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17319-dzfjm7>>}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "simple_images" SET "image_uid" = ?, "updated_at" = ? WHERE "simple_images"."id" = 1[0m  [["image_uid", "2013/07/09/19_05_08_979_test.png"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_986_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_08_996_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:08 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_09_36_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:09 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_09_48_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:09 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "simple_images"[0m
+Processing by SimpleImagesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? ORDER BY "articles"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "simple_images" WHERE "simple_images"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "simple_images"
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_09_61_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:09 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? ORDER BY "articles"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM "simple_images" WHERE "simple_images"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "simple_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "imageable_id" integer NOT NULL, "imageable_type" varchar(255) NOT NULL, "user_id" integer, "image_uid" varchar(255) NOT NULL, "image_name" varchar(255) NOT NULL, "active" boolean DEFAULT 't' NOT NULL, "visible" boolean DEFAULT 't' NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_simple_images_on_imageable_id_and_imageable_type" ON "simple_images" ("imageable_id", "imageable_type")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "content" text) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('0')[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_603_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (1.7ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_620_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_form.html.erb (34.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_663_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (1.3ms)
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_673_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (0.9ms)
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_681_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (0.9ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_687_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_692_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_705_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x00000004f40de0 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17365-fwnepr>>}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.2ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "simple_images" SET "image_uid" = ?, "updated_at" = ? WHERE "simple_images"."id" = 1  [["image_uid", "2013/07/09/19_05_49_714_test.png"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 8ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_722_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>"test2"}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_731_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000052b8e28 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17365-1fpy2il>>}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "simple_images" SET "image_uid" = ?, "updated_at" = ? WHERE "simple_images"."id" = 1[0m  [["image_uid", "2013/07/09/19_05_49_736_test.png"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_744_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_753_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_762_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000055b5ec8 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17365-1y9huyo>>}, "article_id"=>"1"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_781_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 11ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "simple_images"[0m
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000056e4588 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17365-1ixmu3r>>}, "article_id"=>"1"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_792_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "simple_images"
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x00000005747728 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-17365-6g2scd>>}, "article_id"=>"1"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_801_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_863_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "simple_images"
+Processing by SimpleImagesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? ORDER BY "articles"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "simple_images" WHERE "simple_images"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "simple_images"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/19_05_49_876_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 02:05:49 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mArticle Load (0.0ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? ORDER BY "articles"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "simple_images" WHERE "simple_images"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "simple_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "imageable_id" integer NOT NULL, "imageable_type" varchar(255) NOT NULL, "user_id" integer, "image_uid" varchar(255) NOT NULL, "image_name" varchar(255) NOT NULL, "active" boolean DEFAULT 't' NOT NULL, "visible" boolean DEFAULT 't' NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_simple_images_on_imageable_id_and_imageable_type" ON "simple_images" ("imageable_id", "imageable_type")
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "content" text) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('0')[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "simple_images"
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000044eeec8 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-20801-1fzzdnx>>}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_246_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 65ms (ActiveRecord: 1.0ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "simple_images"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x0000000247def0 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-20801-xqz7fk>>}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_257_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000025b9940 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-20801-qarneo>>}, "article_id"=>"1"}
+  [1m[35mArticle Load (0.1ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_266_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#create as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "article_id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_296_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>"test2"}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.2ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_306_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x000000048711b8 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-20801-ovkeyw>>}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "simple_images" SET "image_uid" = ?, "updated_at" = ? WHERE "simple_images"."id" = 1[0m  [["image_uid", "2013/07/09/20_04_09_311_test.png"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "articles" ("content", "title") VALUES (?, ?)  [["content", "Content"], ["title", "Title"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_319_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>#<Rack::Test::UploadedFile:0x00000004aef160 @content_type="image/png", @original_filename="test.png", @tempfile=#<Tempfile:/tmp/test.png20130709-20801-d47dm4>>}, "id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "simple_images" SET "image_uid" = ?, "updated_at" = ? WHERE "simple_images"."id" = 1  [["image_uid", "2013/07/09/20_04_09_324_test.png"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_332_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_341_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_350_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#update as HTML
+  Parameters: {"simple_image"=>{"image"=>nil}, "id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Redirected to http://test.host/articles/1
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_360_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "simple_images"
+Processing by SimpleImagesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSimpleImage Load (0.1ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mSimpleImage Load (0.0ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mArticle Load (0.1ms)[0m  [1mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? ORDER BY "articles"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "simple_images" WHERE "simple_images"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/articles/1
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "simple_images"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_373_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SimpleImagesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSimpleImage Load (0.1ms)[0m  SELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mSimpleImage Load (0.0ms)[0m  [1mSELECT "simple_images".* FROM "simple_images" WHERE "simple_images"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mArticle Load (0.0ms)[0m  SELECT "articles".* FROM "articles" WHERE "articles"."id" = ? ORDER BY "articles"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "simple_images" WHERE "simple_images"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/articles/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_384_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_389_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_404_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (36.6ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_454_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (1.0ms)
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.8ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_464_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_edit.html.erb (0.9ms)
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_471_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_form.html.erb (1.5ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "articles" ("content", "title") VALUES (?, ?)[0m  [["content", "Content"], ["title", "Title"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "simple_images" ("created_at", "image_name", "image_uid", "imageable_id", "imageable_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00], ["image_name", "test.png"], ["image_uid", "2013/07/09/20_04_09_482_test.png"], ["imageable_id", 1], ["imageable_type", "Article"], ["updated_at", Wed, 10 Jul 2013 03:04:09 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  Rendered /home/kainage/code/simple_images/app/views/simple_images/_destroy.html.erb (0.6ms)
+  [1m[35m (0.1ms)[0m  rollback transaction

@@ -12,5 +12,6 @@ class CreateSimpleImages < ActiveRecord::Migration
     end
 
     add_index :simple_images, [:imageable_id, :imageable_type]
+    # add_index :simple_images, :user_id # Uncomment this if using user_id's
   end
 end
