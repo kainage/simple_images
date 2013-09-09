@@ -18,7 +18,13 @@ module SimpleImagesHelper
     render 'simple_images/form', imageable: imageable
   end
 
-  def si_dom_id(imageable)
-    'si_' + imageable.class.to_s.underscore + '_' + imageable.id.to_s
+  def si_dom_id(image_or_imageable)
+    if image_or_imageable.is_a?(SimpleImage)
+      'si_' + image_or_imageable.imageable.class.to_s.underscore + '_' +
+      image_or_imageable.imageable.id.to_s
+    else
+      'si_' + image_or_imageable.class.to_s.underscore + '_' +
+      image_or_imageable.id.to_s
+    end
   end
 end

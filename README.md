@@ -153,6 +153,17 @@ In your views you can call the following methods:
 
 which should be pretty straight forward.
 
+There is a helper ```si_dom_id``` to help you make a unique id (or class) to
+push items to upon successful upload. It can be the simple_image, or the imageable:
+
+```ruby
+si_dom_id(@simple_image)
+=> si_article_12
+
+si_dom_id(@article)
+=> si_article_12
+```
+
 ### Creating Images
 
 Simply click on the 'Add Image' Button and select a file to upload.
