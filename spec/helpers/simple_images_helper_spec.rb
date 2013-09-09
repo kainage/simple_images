@@ -43,4 +43,18 @@ describe SimpleImagesHelper do
       )
     end
   end
+
+  describe "si_dom_id" do
+    it "should include imageable class lowercase and underscored" do
+      expect(helper.si_dom_id(@article)).to match(/article/)
+    end
+
+    it "should include imageable id" do
+      expect(helper.si_dom_id(@article)).to match(/#{@article.id}/)
+    end
+
+    it "should match expected outcome" do
+      expect(helper.si_dom_id(@article)).to match(/si_article_#{@article.id}/)
+    end
+  end
 end
