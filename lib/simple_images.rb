@@ -1,3 +1,5 @@
+require 'jquery-rails'
+require 'jquery.fileupload-rails'
 require 'simple_images/engine'
 
 require 'active_support/core_ext/numeric/bytes'

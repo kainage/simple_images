@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "coffee-rails", "~> 4.0.0"
   spec.add_dependency 'rack-cache', '~> 1.2'
   spec.add_dependency 'dragonfly', '~> 0.9.15'
+  spec.add_dependency 'jquery-rails', '~> 3.0.4'
+  spec.add_dependency 'jquery.fileupload-rails', '~> 1.6.1'
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"

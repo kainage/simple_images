@@ -10,10 +10,10 @@ class SimpleImagesController < ApplicationController
     respond_to do |format|
       if @simple_image.save
         format.html { redirect_to request.referrer, notice: 'Image was successfully created.' }
-        format.json { render json: @simple_image, status: :created, location: @simple_image }
+        format.js
       else
         format.html { redirect_to request.referrer, alert: @simple_image.errors.full_messages.join(', ') }
-        format.json { render json: @simple_image.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -25,10 +25,10 @@ class SimpleImagesController < ApplicationController
     respond_to do |format|
       if @simple_image.update(simple_image_params)
         format.html { redirect_to request.referrer, notice: 'Image was successfully updated.' }
-        format.json { head :no_content }
+        format.js
       else
         format.html { redirect_to request.referrer, alert: @simple_image.errors.full_messages.join(', ') }
-        format.json { render json: @simple_image.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,7 +42,6 @@ class SimpleImagesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to request.referrer, notice: 'Image was permanently removed.' }
-      format.json { head :no_content }
     end
   end
 

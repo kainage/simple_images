@@ -107,17 +107,36 @@ An image must be associated to an active record model. If you want all images to
 availible to all things just pick an arbitrary object that you are not going to
 destroy (such as first user) and associate all images with that record.
 
-Include the javascript file in your application.js manifest:
+Include the javascript file in your application.js manifest. If you want the basic,
+page reloading functionality:
 
 ```
-//= require simple_images
+//= require simple_images/uploader
+```
+
+Or the AJAX uploader using jquery.fileupload:
+
+```
+//= require simple_images/ajax_uploader
+```
+
+If you are using the AJAX uploader, you MUST have a file in ```views/simple_images/create.js.erb```
+and ```views/simple_images/update.js.erb``` with what to do after the form is submitted.
+An example of create:
+
+```
+<% if @simple_image.new_record? %>
+  alert("Failed to upload simple image: <%= j @simple_image.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+  $("#simple_images").append("<%= j render(@simple_image) %>");
+<% end %>
 ```
 
 Include the stylesheet in your application.css manifest:
 
 ```
 /*
- *= require simple_images
+ *= require simple_images/uploader
 */
 ```
 
