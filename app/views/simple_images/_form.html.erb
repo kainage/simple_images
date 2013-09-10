@@ -1,6 +1,10 @@
-<%= form_for [main_app, imageable, SimpleImage.new], html: { multipart: true } do |f| %>
+<% form_id = "new_simple_image_#{dom_id(imageable)}" %>
+
+<%= form_for [main_app, imageable, SimpleImage.new], html: { id: form_id, multipart: true } do |f| %>
   <%= content_tag :div, 'Add Image', :class => 'simple_image_btn' %>
   <div style='display: none'>
     <%= f.file_field :image, multiple: true, name: 'simple_image[image]', class: 'simple_image_input' %>
   </div>
+
+  <%= render 'simple_images/spinner', klass: form_id if spinner %>
 <% end %>

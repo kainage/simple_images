@@ -14,8 +14,12 @@ module SimpleImagesHelper
     end.join.html_safe
   end
 
-  def render_simple_images_form_for(imageable)
-    render 'simple_images/form', imageable: imageable
+  def render_simple_images_form_for(imageable, spinner: false)
+    render 'simple_images/form', imageable: imageable, spinner: spinner
+  end
+
+  def render_simple_images_spinner(klass)
+    render 'simple_images/spinner', klass: klass
   end
 
   def si_dom_id(image_or_imageable)

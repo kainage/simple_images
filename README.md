@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kainage/simple_images.png)](https://travis-ci.org/kainage/simple_images)
 
-Add simple one-click image uploading to active record models.
+Add simple one-click image uploading to active record models using **Dragonfly**
 
 **Requires ruby >= 1.9.3**
 
@@ -107,6 +107,18 @@ An image must be associated to an active record model. If you want all images to
 availible to all things just pick an arbitrary object that you are not going to
 destroy (such as first user) and associate all images with that record.
 
+Include the stylesheets in your application.css manifest:
+
+```
+/*
+ *= require simple_images/uploader
+ *= require simple_images/spinner
+*/
+```
+
+You can omit either stylesheet if you want to style your own upload button from scratch
+or you do not want to use the spinner (or are not using AJAX)
+
 Include the javascript file in your application.js manifest. If you want the basic,
 page reloading functionality:
 
@@ -132,26 +144,23 @@ An example of create:
 <% end %>
 ```
 
-Include the stylesheet in your application.css manifest:
-
-```
-/*
- *= require simple_images/uploader
-*/
-```
-
-You can omit the stylesheet if you want to style your own upload button from scratch
-
 In your views you can call the following methods:
 
 ```
 <%= render_simple_images_edit_link_for(image) %>
 <%= render_simple_images_destroy_link_for(image) %>
 <%= render_simple_images_actions_for(image) %>
-<%= render_simple_images_form_for(imageable) %>
+<%= render_simple_images_form_for(imageable, spinner: false) %>
+<%= render_simple_images_spinner(klass) %>
 ```
 
-which should be pretty straight forward.
+The spinner on the 'form_for' is if you want to render the spinner with the form.
+It will have a class of 'spinner' and a class of ```<%= dom_id(imageable) %>_spinner```
+(ex 'article_4_spinner'). You can then show/hide this with javascript.
+
+The spinner helper, you pass it the class that you want the spinner to have.
+For the spinner to automatically show, make sure your edit form id and the
+spinner class are the same (ex 'edit_simple_image_134').
 
 There is a helper ```si_dom_id``` to help you make a unique id (or class) to
 push items to upon successful upload. It can be the simple_image, or the imageable:

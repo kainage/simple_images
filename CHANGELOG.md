@@ -1,3 +1,7 @@
+## v0.0.4
+
+* Added spinner option standalone and helper
+
 ## v0.0.3
 
 * Added si_dom_id helper
