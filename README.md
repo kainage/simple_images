@@ -4,7 +4,7 @@
 
 Add simple one-click image uploading to active record models using **Dragonfly**
 
-**Requires ruby >= 1.9.3**
+**Requires ruby >= 2.0.0**
 
 **Requires rails >= 4.0.0**
 
