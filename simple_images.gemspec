@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rails", "~> 4.0.0"
-  spec.add_dependency "sass-rails", "~> 4.0.0"
-  spec.add_dependency "coffee-rails", "~> 4.0.0"
+  spec.add_dependency "rails", ">= 4.0.0"
+  spec.add_dependency "sass-rails", ">= 4.0.0"
+  spec.add_dependency "coffee-rails", ">= 4.0.0"
   spec.add_dependency 'rack-cache', '~> 1.2'
   spec.add_dependency 'dragonfly', '~> 0.9.15'
   spec.add_dependency 'jquery-rails', '~> 3.0.4'
