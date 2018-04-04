@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kainage/simple_images.png)](https://travis-ci.org/kainage/simple_images)
 
-Add simple one-click image uploading to active record models using **Dragonfly**
+Add one-click image uploading to active record models using **Dragonfly**
 
 **Requires ruby >= 2.0.0**
 
@@ -52,11 +52,11 @@ class SimpleImage
 end
 ```
 
-You can add any custom functionality to the Message model here.
+You can add custom functionality to the Message model here.
 
 ### Imageable Model
 
-Add the appropriate line to the top of your activerecord model:
+Add `has_simple_images` to the top of your activerecord model:
 
 ```ruby
 class Article
@@ -154,15 +154,15 @@ In your views you can call the following methods:
 <%= render_simple_images_spinner(klass) %>
 ```
 
-The spinner on the 'form_for' is if you want to render the spinner with the form.
+The spinner on the 'form_for' is meant for rendering the spinner with the form.
 It will have a class of 'spinner' and a class of ```<%= dom_id(imageable) %>_spinner```
-(ex 'article_4_spinner'). You can then show/hide this with javascript.
+(ex 'article_4_spinner'). You can then show/hide the spinner with javascript.
 
 The spinner helper, you pass it the class that you want the spinner to have.
 For the spinner to automatically show, make sure your edit form id and the
 spinner class are the same (ex 'edit_simple_image_134').
 
-There is a helper ```si_dom_id``` to help you make a unique id (or class) to
+```si_dom_id``` is a helper to make a unique id (or class) to
 push items to upon successful upload. It can be the simple_image, or the imageable:
 
 ```ruby
@@ -175,7 +175,7 @@ si_dom_id(@article)
 
 ### Creating Images
 
-Simply click on the 'Add Image' Button and select a file to upload.
+Click on the 'Add Image' Button and select a file to upload.
 If your controller responds to ```current_user``` then it will be assigned to the image.
 
 ## Contributing
